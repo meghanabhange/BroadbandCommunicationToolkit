@@ -49,7 +49,9 @@ The curves can then be plotted by invoking plot_profile method
 `myfibre.plot_profile(core_radius=30, cladding_radius=50)`
 
 Graded Indexed Fibre
+
 ![Graded](https://i.ibb.co/q7CygnF/Screenshot-2020-03-02-at-1-32-51-AM.png)
 
 Step Indexed Fibre
+
 ![Step](https://i.ibb.co/zr3H66j/Screenshot-2020-03-02-at-1-32-36-AM.png)
