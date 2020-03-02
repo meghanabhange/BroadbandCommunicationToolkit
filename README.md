@@ -9,23 +9,13 @@ or
 The model will throw an error if incomplete information is provided. 
 
 ex1
-
-`myfibre = OpticalFibre(core_n=1.46, cladding_n=1.39, index="Graded")`
-
-ex2
-
-`myfibre = OpticalFibre(core_n=1.46, refractive_index_difference=0.01, index="Step")`
+```
+myfibre = OpticalFibre(core_n=1.46, cladding_n=1.39, index="Graded")
+myfibre = OpticalFibre(core_n=1.46, refractive_index_difference=0.01, index="Step")
+```
 
 
-invalid entry
-
-`myfibre = OpticalFibre(index="Step")`
-
-or 
-
-`myfibre = OpticalFibre(refractive_index_difference=0.01, index="Step")`
-
-Then you can see all the intrensic model parameters :
+Intrensic model parameters :
 
 ```
 Optical Fibre Properties:
