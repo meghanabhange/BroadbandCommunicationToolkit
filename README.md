@@ -8,7 +8,7 @@ or
 
 The model will throw an error if incomplete information is provided. 
 
-ex1
+Creating Fibre
 ```
 myfibre = OpticalFibre(core_n=1.46, cladding_n=1.39, index="Graded")
 myfibre = OpticalFibre(core_n=1.46, refractive_index_difference=0.01, index="Step")
