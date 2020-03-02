@@ -62,7 +62,7 @@ class OpticalFibre:
         print(f"Mode :{self.mode}")
 
     def calculate_normalised_frequency(self):
-        self.normalised_frequency = (2*3.14*self.core_radius*self.NA)/(self.wavelength)
+        self.normalised_frequency = (2*math.pi*self.core_radius*self.NA)/(self.wavelength)
         if self.normalised_frequency<2.405:
             self.mode="Single Mode"
         else:
