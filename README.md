@@ -40,8 +40,6 @@ Formulas
 
 ## Plotting the Profiles
 
-**Currently only supporting alpha ==2**
-
 The curves can then be plotted by invoking plot_profile method
 
 ![Graded](https://www.its.bldrdoc.gov/fs-1037/equats/37c_30.gif)
@@ -55,3 +53,6 @@ Graded Indexed Fibre
 Step Indexed Fibre
 
 ![Step](https://i.ibb.co/zr3H66j/Screenshot-2020-03-02-at-1-32-36-AM.png)
+
+Multiple Alpha Plotting
+![multi](https://i.ibb.co/h2JMgf4/Screenshot-2020-03-02-at-11-44-36-AM.png)
