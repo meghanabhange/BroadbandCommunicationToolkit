@@ -46,7 +46,7 @@ class OpticalFibre:
         print(f"Numerical Apparture:{self.NA}")
         print(f"Profile :{self.index} Index Fibre")
 
-    def plot_profile(self, core_radius, cladding_radius, alpha=2):
+    def get_profile(self, core_radius, cladding_radius, alpha=2):
         total_length = int((2 * cladding_radius))
         if self.index == "Step":
             X = [i for i in range(-int(total_length / 2), int(total_length / 2))]
@@ -57,14 +57,48 @@ class OpticalFibre:
         elif self.index == "Graded":
             self.delta = (self.n1 ** 2 - self.n2 ** 2) / (2 * self.n1 ** 2)
             X = [i for i in range(-int(total_length / 2), int(total_length / 2))]
-            Y = [
-                self.n1 * (sqrt(1 - 2 * self.delta))
-                if ((rad < -core_radius) or (rad > core_radius))
-                else self.n1
-                * (sqrt(1 - (2 * self.delta * ((rad / core_radius) ** alpha))))
-                for rad in X
-            ]
+            if alpha%2==0:
+                Y = [
+                    self.n1 * (math.sqrt(1 - 2 * self.delta))
+                    if ((rad < -core_radius) or (rad > core_radius))
+                    else self.n1
+                    * (math.sqrt(1 - (2 * self.delta * ((rad / core_radius) ** alpha))))
+                    for rad in X
+                ]
+            else:
+                Y1 = [
+                    self.n1 * (math.sqrt(1 - 2 * self.delta))
+                    if ((rad < -core_radius) or (rad > core_radius))
+                    else self.n1
+                    * (math.sqrt(1 - (2 * self.delta * ((-rad / core_radius) ** alpha))))
+                    for rad in X[:int(len(X)/2)]
+                ]
+                Y2 = [
+                    self.n1 * (math.sqrt(1 - 2 * self.delta))
+                    if ((rad < -core_radius) or (rad > core_radius))
+                    else self.n1
+                    * (math.sqrt(1 - (2 * self.delta * ((rad / core_radius) ** alpha))))
+                    for rad in X[int(len(X)/2):]
+                ]
+                Y = Y1+Y2
+        return X, Y
+
+    def plot_profile(self, core_radius, cladding_radius, alpha=2):
+        X, Y = self.get_profile(core_radius, cladding_radius, alpha)
         plt.plot(X, Y)
         plt.ylabel("Refractive Index")
         plt.xlabel("Radius")
+        plt.title(f"{self.index} Indexed Fibre. Alpha : {alpha}")
+        plt.show()
+    
+    def plot_multiple_profile(self, core_radius, cladding_radius, alphas=[1,2,3,10000]):
+        if self.index!="Graded":
+            raise ValueError("The fibre is not Graded Indexed Fibre")
+        for alpha in alphas:
+            X, Y = self.get_profile(core_radius, cladding_radius, alpha)
+            plt.plot(X, Y, label=f"{alpha}")
+        plt.ylabel("Refractive Index")
+        plt.xlabel("Radius")
+        plt.legend(loc="upper left")
+        plt.title(f"{self.index} Indexed Fibre.")
         plt.show()
