@@ -86,26 +86,26 @@ class OpticalFibre:
                 for rad in X
             ]
         elif self.index == "Graded":
-            self.delta = (self.n1 ** 2 - self.n2 ** 2) / (2 * self.n1 ** 2)
+            self.delta = ((self.n1 ** 2 )- (self.n2 ** 2)) / (2 * (self.n1 ** 2))
             X = [i for i in range(-int(total_length / 2), int(total_length / 2))]
             if alpha%2==0:
                 Y = [
-                    self.n1 * (math.sqrt(1 - 2 * self.delta))
+                    self.n1 * (math.sqrt(1 - (2 * self.delta)))
                     if ((rad < -self.core_radius) or (rad > self.core_radius))
                     else self.n1
-                    * (math.sqrt(1 - (2 * self.delta * ((rad / self.core_radius) ** alpha))))
+                    * (math.sqrt(1 - ((2 * self.delta) * ((rad / self.core_radius) ** alpha))))
                     for rad in X
                 ]
             else:
                 Y1 = [
-                    self.n1 * (math.sqrt(1 - 2 * self.delta))
+                    self.n1 * (math.sqrt(1 - (2 * self.delta)))
                     if ((rad < -self.core_radius) or (rad > self.core_radius))
                     else self.n1
                     * (math.sqrt(1 - (2 * self.delta * ((-rad / self.core_radius) ** alpha))))
                     for rad in X[:int(len(X)/2)]
                 ]
                 Y2 = [
-                    self.n1 * (math.sqrt(1 - 2 * self.delta))
+                    self.n1 * (math.sqrt(1 -( 2 * self.delta)))
                     if ((rad < -self.core_radius) or (rad > self.core_radius))
                     else self.n1
                     * (math.sqrt(1 - (2 * self.delta * ((rad / self.core_radius) ** alpha))))
